@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "451708552597",
+    "project_id": "chatroom-ec65e",
+    "storage_bucket": "chatroom-ec65e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451708552597:android:184982d94ddf6109e0a29c",
+        "android_client_info": {
+          "package_name": "com.shadowtech.chatroom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451708552597-u2245v7iv87mjr81b3qvduknbhl1msoh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOX75lkgoYnOfJbD8b-WGZ7cTAS2VAkb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451708552597-u2245v7iv87mjr81b3qvduknbhl1msoh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
