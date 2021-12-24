@@ -32,8 +32,7 @@ public class SplashFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentSplashBinding.inflate(getLayoutInflater());
         auth = FirebaseAuth.getInstance();
-        SharedPreferences spf = requireContext().getSharedPreferences("UserPhoneNumber" , Context.MODE_PRIVATE);
-        String number = spf.getString("Phonenumber" , null);
+
 
             Thread thread = new Thread()
             {
@@ -46,16 +45,6 @@ public class SplashFragment extends Fragment {
                         e.printStackTrace();
                     }
                     finally {
-                        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                        if(number.isEmpty())
-                        {
-                            fragmentTransaction.replace(R.id.frUserDetailsContainer , new SignInFragment());
-                            fragmentTransaction.commit();
-                        }
-                        else {
-                            fragmentTransaction.replace(R.id.frUserDetailsContainer , new SignInProfileFragment());
-                            fragmentTransaction.commit();
-                        }
 
                     }
                 }

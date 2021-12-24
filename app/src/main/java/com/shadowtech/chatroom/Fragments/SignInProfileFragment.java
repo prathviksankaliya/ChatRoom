@@ -1,7 +1,10 @@
 package com.shadowtech.chatroom.Fragments;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResult;
@@ -9,6 +12,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.ActionMode;
@@ -16,9 +20,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageMetadata;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.shadowtech.chatroom.MainActivity;
+import com.shadowtech.chatroom.Model.UserProfile;
 import com.shadowtech.chatroom.R;
 import com.shadowtech.chatroom.databinding.FragmentSignInProfileBinding;
 
@@ -37,6 +49,8 @@ public class SignInProfileFragment extends Fragment {
     FirebaseAuth auth;
     FirebaseDatabase database;
     FirebaseStorage storage;
+    Uri selectedImg;
+    ProgressDialog progressDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,6 +60,9 @@ public class SignInProfileFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Saved Profile .....");
+
 
         binding.btnSignInProfileSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,9 +78,57 @@ public class SignInProfileFragment extends Fragment {
                     binding.edSignInProfileAbout.requestFocus();
                 }
                 else {
+                    progressDialog.show();
                    String UserProfileName =  binding.edSignInProfileName.getText().toString();
                    String UserProfileAbout =  binding.edSignInProfileAbout.getText().toString();
+                    if(selectedImg != null)
+                    {
+                        StorageReference reference = storage.getReference().child("Profiles").child(auth.getUid());
+                        reference.putFile(selectedImg).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                if(task.isSuccessful())
+                                {
+                                    reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            String imageUrl = uri.toString();
+                                            String Uid = auth.getCurrentUser().getUid();
+                                            String phone = auth.getCurrentUser().getPhoneNumber();
+                                            UserProfile userProfile = new UserProfile(Uid , UserProfileName , UserProfileAbout , phone , imageUrl);
+                                            database.getReference().child("Users").child(Uid).setValue(userProfile)
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void unused) {
+                                                            progressDialog.dismiss();
+                                                            Intent intent = new Intent(getContext() , MainActivity.class);
+                                                            startActivity(intent);
+                                                            requireActivity().finish();
+                                                        }
+                                                    });
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    }
+                    else {
 
+                                            String Uid = auth.getCurrentUser().getUid();
+                                            String phone = auth.getCurrentUser().getPhoneNumber();
+                                            UserProfile userProfile = new UserProfile(Uid , UserProfileName , UserProfileAbout , phone , "No Image");
+                                            database.getReference().child("Users").child(Uid).setValue(userProfile)
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void unused) {
+                                                            progressDialog.dismiss();
+                                                            Intent intent = new Intent(getContext() , MainActivity.class);
+                                                            startActivity(intent);
+                                                            requireActivity().finish();
+                                                        }
+                                                    });
+
+                    }
                 }
 
             }
@@ -91,6 +156,7 @@ public class SignInProfileFragment extends Fragment {
                             if(data.getData() != null)
                             {
                                 binding.profileImage.setImageURI(data.getData());
+                                selectedImg = data.getData();
                             }
                         }
 
