@@ -1,33 +1,42 @@
 {
   "project_info": {
-    "project_number": "451708552597",
-    "project_id": "chatroom-ec65e",
-    "storage_bucket": "chatroom-ec65e.appspot.com"
+    "project_number": "550148111527",
+    "firebase_url": "https://chatroom-29d26-default-rtdb.firebaseio.com",
+    "project_id": "chatroom-29d26",
+    "storage_bucket": "chatroom-29d26.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:451708552597:android:184982d94ddf6109e0a29c",
+        "mobilesdk_app_id": "1:550148111527:android:825ac7f5713d9c9ccdef82",
         "android_client_info": {
           "package_name": "com.shadowtech.chatroom"
         }
       },
       "oauth_client": [
         {
-          "client_id": "451708552597-u2245v7iv87mjr81b3qvduknbhl1msoh.apps.googleusercontent.com",
+          "client_id": "550148111527-244quanv1f2k1p7u0e55r0ugoucc2rt5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shadowtech.chatroom",
+            "certificate_hash": "a9cdbcf4bbee9c7a0058b2561aa0b1c574bff1cd"
+          }
+        },
+        {
+          "client_id": "550148111527-3cv13q72f5dheeadvsm5m4m2ah710o95.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAOX75lkgoYnOfJbD8b-WGZ7cTAS2VAkb4"
+          "current_key": "AIzaSyDO4amdtgtkII8JA0OuPTG5p611YuPtcjw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "451708552597-u2245v7iv87mjr81b3qvduknbhl1msoh.apps.googleusercontent.com",
+              "client_id": "550148111527-3cv13q72f5dheeadvsm5m4m2ah710o95.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

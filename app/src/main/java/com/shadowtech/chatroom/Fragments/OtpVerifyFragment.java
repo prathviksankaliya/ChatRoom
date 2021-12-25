@@ -73,6 +73,7 @@ public class OtpVerifyFragment extends Fragment {
 
         return binding.getRoot();
     }
+
     private void sendVerificationCode(String number)
     {
         PhoneAuthOptions options = PhoneAuthOptions.newBuilder(auth)
@@ -121,15 +122,15 @@ public class OtpVerifyFragment extends Fragment {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful())
                 {
-
                     FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.frUserDetailsContainer , new SignInProfileFragment());
                     fragmentTransaction.commit();
-                    requireActivity().finish();
                 }
                 else
                 {
-                    Toast.makeText(getContext(), ""+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), ""+task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    progressDialog.dismiss();
+                    Toast.makeText(getContext(), "Please Try again ..", Toast.LENGTH_SHORT).show();
                 }
             }
         });
