@@ -135,6 +135,7 @@ public class SignInProfileFragment extends Fragment {
         return binding.getRoot();
     }
 
+
     ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
             , new ActivityResultCallback<ActivityResult>() {
                 @Override
