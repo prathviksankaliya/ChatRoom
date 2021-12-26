@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/btNavChats"
+        android:title="Chats"
+        android:icon="@drawable/chat"
+        />
+    <item
+        android:id="@+id/btNavGroups"
+        android:title="Groups"
+        android:icon="@drawable/gpp"
+        />
+    <item
+        android:id="@+id/btNavStatus"
+        android:icon="@drawable/button"
+        android:title="Status" />
+    <item
+        android:id="@+id/btNavProfile"
+        android:title="Profile"
+        android:icon="@drawable/ic_baseline_account_box_24"
+        />
+
+</menu>

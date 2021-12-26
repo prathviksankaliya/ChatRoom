@@ -68,6 +68,9 @@ public class SplashFragment extends Fragment {
                         }
                         else
                         {
+                            Intent intent = new Intent(getContext() , MainActivity.class);
+                            startActivity(intent);
+                            requireActivity().finishAffinity();
 //                            database.getReference().child("Users").child(auth.getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
 //                                @Override
 //                                public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -80,18 +83,16 @@ public class SplashFragment extends Fragment {
 //                                    }
 //                                }
 //                            });
-                            if(database.getReference().child("Users").child(auth.getUid()).get().isSuccessful())
-                            {
-
-                                Intent intent = new Intent(getContext() , MainActivity.class);
-                                startActivity(intent);
-                                requireActivity().finishAffinity();
-                            }
-                            else {
-                                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                                fragmentTransaction.replace(R.id.frUserDetailsContainer , new SignInFragment());
-                                fragmentTransaction.commit();
-                            }
+//                            if(database.getReference().child("Users").child(auth.getUid()).get().isSuccessful())
+//                            {
+//
+//
+//                            }
+//                            else {
+//                                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+//                                fragmentTransaction.replace(R.id.frUserDetailsContainer , new SignInFragment());
+//                                fragmentTransaction.commit();
+//                            }
 
                         }
                     }
