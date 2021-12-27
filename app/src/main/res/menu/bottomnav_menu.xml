@@ -14,7 +14,7 @@
         />
     <item
         android:id="@+id/btNavStatus"
-        android:icon="@drawable/button"
+        android:icon="@drawable/status"
         android:title="Status" />
     <item
         android:id="@+id/btNavProfile"

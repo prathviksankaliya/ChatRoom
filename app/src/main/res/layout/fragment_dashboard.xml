@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
+                android:elevation="30dp"
                 app:menu="@menu/toolbar_menu">
 
                 <androidx.cardview.widget.CardView
@@ -56,6 +58,48 @@
         </com.google.android.material.appbar.AppBarLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/coordinatorLayout">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="6dp"
+            android:autofillHints="true"
+            android:background="@drawable/searchbar_dashboard"
+            android:drawableStart="@drawable/ic_baseline_search_24"
+            android:drawablePadding="8dp"
+            android:layout_weight="1"
+            android:padding="6dp"
+            android:hint="Search Chats"
+            android:fontFamily="serif"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/txDashboardOnlineCount"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="120"
+            android:layout_margin="6dp"
+            android:padding="4dp"
+            android:layout_weight="3"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="serif"
+            android:background="@drawable/searchbar_dashboard"
+            android:gravity="center"
+            app:drawableStartCompat="@drawable/checktik" />
+    </LinearLayout>
+
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vpDashboard"
