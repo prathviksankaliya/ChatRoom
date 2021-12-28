@@ -128,7 +128,7 @@ public class OtpVerifyFragment extends Fragment {
                 }
                 else
                 {
-                    Toast.makeText(getContext(), ""+task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), ""+task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
                     Toast.makeText(getContext(), "Please Try again ..", Toast.LENGTH_SHORT).show();
                 }

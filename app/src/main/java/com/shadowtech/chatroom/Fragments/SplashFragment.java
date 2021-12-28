@@ -38,7 +38,7 @@ public class SplashFragment extends Fragment {
     FirebaseAuth auth;
     FragmentSplashBinding binding;
     FirebaseDatabase database;
-    String ValidUser;
+    UserProfile userProfile = new UserProfile();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -60,40 +60,49 @@ public class SplashFragment extends Fragment {
                     }
                     finally {
 
-                        if(auth.getCurrentUser() == null )
-                        {
-                            FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                            fragmentTransaction.replace(R.id.frUserDetailsContainer , new SignInFragment());
-                            fragmentTransaction.commit();
-                        }
-                        else
-                        {
-                            Intent intent = new Intent(getContext() , MainActivity.class);
-                            startActivity(intent);
-                            requireActivity().finishAffinity();
-//                            database.getReference().child("Users").child(auth.getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+//                        if(auth.getCurrentUser() != null)
+//                        {
+//                            database.getReference().child("Users").child(auth.getUid()).addValueEventListener(new ValueEventListener() {
 //                                @Override
-//                                public void onComplete(@NonNull Task<DataSnapshot> task) {
-//                                    if(task.isSuccessful())
-//                                    {
-//                                        ValidUser = String.valueOf(task.getResult().getValue());
-//                                    }
-//                                    else {
-//                                        ValidUser = null;
-//                                    }
+//                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                    userProfile = snapshot.getValue(UserProfile.class);
+//                                    Toast.makeText(getContext(), ""+ userProfile.getUserName(), Toast.LENGTH_SHORT).show();
+//                                }
+//
+//                                @Override
+//                                public void onCancelled(@NonNull DatabaseError error) {
+//                                    Toast.makeText(getContext(), ""+error.getMessage(), Toast.LENGTH_SHORT).show();
 //                                }
 //                            });
-//                            if(database.getReference().child("Users").child(auth.getUid()).get().isSuccessful())
+//
+//                            if(userProfile.getUserName() == null)
 //                            {
-//
-//
-//                            }
-//                            else {
 //                                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
 //                                fragmentTransaction.replace(R.id.frUserDetailsContainer , new SignInFragment());
 //                                fragmentTransaction.commit();
 //                            }
-
+//                            else {
+//                                Intent intent = new Intent(getContext() , MainActivity.class);
+////                                startActivity(intent);
+////                                requireActivity().finishAffinity();
+//                            }
+//                        }
+//                        else
+//                        {
+//                            FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+//                            fragmentTransaction.replace(R.id.frUserDetailsContainer , new SignInFragment());
+//                            fragmentTransaction.commit();
+//                        }
+                        if(auth.getCurrentUser() != null)
+                        {
+                            Intent intent = new Intent(getContext() , MainActivity.class);
+                                startActivity(intent);
+                                requireActivity().finishAffinity();
+                        }
+                        else {
+                            FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+                            fragmentTransaction.replace(R.id.frUserDetailsContainer , new SignInFragment());
+                            fragmentTransaction.commit();
                         }
                     }
                 }
